@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A-Frame Escape Room</title>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+</head>
+<body>
+    <a-scene>
+        <!-- Asset Management System -->
+        <a-assets>
+            <img id="metal" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_AO_3K_SPECULAR.jpg">
+            <img id="metal-NRM" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_NRM_3K_SPECULAR.jpg">
+            <img id="metal-COL" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_COL_3K_SPECULAR.jpg">
+        </a-assets>
+
+        <!-- Light-Blue Box -->
+        <a-box color="#metal-COL"
+               src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_DISP_3K_SPECULAR.jpg"
+               repeat="1 1"
+               normal-map="#metal-NRM"
+               normal-texture-repeat="1 1"
+               normal-scale="1 -1"
+               roughness="0.3"
+               width="4" height="4" depth="4"
+               position="-2 1.5 -9">
+
+        </a-box>
+
+        <!-- Brown Box -->
+        <a-box color="#795548"
+               width="4" height="4" depth="4"
+               position="2 1.5 -9">
+
+        </a-box>
+
+    </a-scene>
+</body>
+</html>
