@@ -4,36 +4,97 @@
     <meta charset="UTF-8">
     <title>A-Frame Escape Room</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-template-component@^3.1.1/dist/aframe-template-component.min.js"></script>
 </head>
 <body>
-    <a-scene>
-        <!-- Asset Management System -->
-        <a-assets>
-            <img id="metal" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_AO_3K_SPECULAR.jpg">
-            <img id="metal-NRM" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_NRM_3K_SPECULAR.jpg">
-            <img id="metal-COL" src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_COL_3K_SPECULAR.jpg">
-        </a-assets>
+<a-scene>
+    <!-- Asset Management System -->
+    <a-assets>
+        <img id="metal"
+             src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_DISP_3K_SPECULAR.jpg">
+        <img id="metal-NRM"
+             src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_NRM_3K_SPECULAR.jpg">
+        <img id="metal-COL"
+             src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_COL_3K_SPECULAR.jpg">
+        <img id="wood"
+             src="Texture/WoodFlooringMerbauBrickBondNatural001/REGULAR/3K/WoodFlooringMerbauBrickBondNatural001_DISP_3K.jpg">
+        <img id="wood-NRM"
+             src="Texture/WoodFlooringMerbauBrickBondNatural001/REGULAR/3K/WoodFlooringMerbauBrickBondNatural001_NRM_3K.png">
+        <img id="wood-COL"
+             src="Texture/WoodFlooringMerbauBrickBondNatural001/REGULAR/3K/WoodFlooringMerbauBrickBondNatural001_COL_3K.jpg">
+        <a-asset-item id="key"
+                      src="Model/key.obj"></a-asset-item>
+        <a-asset-item id="key-mtl"
+                      src="Model/key.mtl"></a-asset-item>
+    </a-assets>
 
-        <!-- Light-Blue Box -->
-        <a-box color="#metal-COL"
-               src="Texture/MetalCorrugatedIronSheet002/SPECULAR/3K/MetalCorrugatedIronSheet002_DISP_3K_SPECULAR.jpg"
-               repeat="1 1"
-               normal-map="#metal-NRM"
-               normal-texture-repeat="1 1"
-               normal-scale="1 -1"
-               roughness="0.3"
-               width="4" height="4" depth="4"
-               position="-2 1.5 -9">
+    <!-- Light-Blue Box -->
+    <a-box color="#metal-COL"
+           src="#metal"
+           repeat="1 1"
+           normal-map="#metal-NRM"
+           normal-texture-repeat="1 1"
+           normal-scale="1 -1"
+           roughness="0.3"
+           width="4" height="4" depth="4"
+           position="-2 0 -9">
 
-        </a-box>
+    </a-box>
 
-        <!-- Brown Box -->
-        <a-box color="#795548"
-               width="4" height="4" depth="4"
-               position="2 1.5 -9">
+    <!-- Brown Box -->
+    <a-box color="#795548"
+           width="4" height="4" depth="4"
+           position="2 0 -9">
 
-        </a-box>
+    </a-box>
 
-    </a-scene>
+    <a-plane position="0 -2 0"
+             rotation="-90 0 0"
+             width="100" height="100"
+             color="#wood-COL"
+             src="#wood-COL"
+             repeat="20 20"
+             roughness="0.3">
+
+    </a-plane>
+
+    <!-- Key -->
+    <a-entity obj-model="obj: #key; mtl: #key-mtl"
+              scale="0.1 0.1 0.1"
+              rotation="0 90 0"
+              position="1 -2 0">
+
+    </a-entity>
+
+
+    <a-box id="avbox"
+           movement-controls="fly:false"
+           link-controls
+           position="0 0 0">
+
+        <a-entity camera look-controls="pointerLockEnabled:false">
+            <a-entity cursor="fuse: true; fuseTimeout: 500"
+                      position="0 0 -1"
+                      geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                      material="color: black; shader: flat">
+            </a-entity>
+
+            <a-entity id="hud"
+                      health="10"
+                      score="0"
+                      text="width:3; value: Start Game!;"
+                      position="0 1 -2"
+            ></a-entity>
+
+            <a-box id="avatar"
+                   static-body
+                   scale="0.5 4 0.5" position="0 -1 -2"
+                   material="color:red; transparent:true; opacity:0.3">
+            </a-box>
+        </a-entity>
+    </a-box>
+</a-scene>
 </body>
 </html>
